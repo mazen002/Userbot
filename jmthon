@@ -1,0 +1,53 @@
+_get_repolink () {
+    local regex
+    regex='(https?)://gitlab.com/.+/.+'
+    if [[ $JMTHON_REPO == "JMTHONbot" ]]
+    then
+        echo "aHR0cHM6Ly9naXRsYWIuY29tL0pNVEhPTi91c2VyYm90Ly0vYXJjaGl2ZS9tYWluL3VzZXJib3QtbWFpbi56aXA=" | base64 -d
+    elif [[ $JMTHON_REPO == "JMTHONBOT" ]]
+    then
+        echo "aHR0cHM6Ly9naXRsYWIuY29tL0pNVEhPTi91c2VyYm90Ly0vYXJjaGl2ZS9tYWluL3VzZXJib3QtbWFpbi56aXA=" | base64 -d
+    elif [[ $JMTHON_REPO =~ $regex ]]
+    then
+        if [[ $JMTHON_REPO_BRANCH ]]
+        then
+            echo "${JMTHON_REPO}/archive/${JMTHON_REPO_BRANCH}.zip"
+        else
+            echo "${JMTHON_REPO}/archive/main.zip"
+        fi
+    else
+        echo "aHR0cHM6Ly9naXRsYWIuY29tL0pNVEhPTi91c2VyYm90Ly0vYXJjaGl2ZS9tYWluL3VzZXJib3QtbWFpbi56aXA=" | base64 -d
+    fi
+}
+
+
+_set_bot () {
+    local zippath
+    zippath="JMTHONbot.zip"
+    echo "يتم التعريف.....!"
+    wget -q $(_get_repolink) -O "$zippath"
+    echo "  يتم سحب الملفات ..."
+    JMTHONPATH=$(zipinfo -1 "$zippath" | grep -v "/.");
+    unzip -qq "$zippath"
+    echo "تم بنجاح ✓"
+    echo "  يتم التفريغ"
+    rm -rf "$zippath"
+    sleep 5
+    cd $JMTHONPATH
+    echo "🔭• يتم تشغيل سيرفرات جمثون 🛰️🛸"
+    echo """
+    © J M T H O N ©
+
+╱╱╭┳━╮╭━┳━━━━┳╮╱╭┳━━━┳━╮╱╭╮
+╱╱┃┃┃╰╯┃┃╭╮╭╮┃┃╱┃┃╭━╮┃┃╰╮┃┃
+╱╱┃┃╭╮╭╮┣╯┃┃╰┫╰━╯┃┃╱┃┃╭╮╰╯┃
+╭╮┃┃┃┃┃┃┃╱┃┃╱┃╭━╮┃┃╱┃┃┃╰╮┃┃
+┃╰╯┃┃┃┃┃┃╱┃┃╱┃┃╱┃┃╰━╯┃┃╱┃┃┃
+╰━━┻╯╰╯╰╯╱╰╯╱╰╯╱╰┻━━━┻╯╱╰━╯
+    """
+    
+    
+    python3 -m jmthon
+}
+
+_set_bot
