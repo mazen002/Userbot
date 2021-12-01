@@ -1,0 +1,85 @@
+{
+  "name": "سورس جمثون بيتا",
+  "description": "سورس جمثون الجديد نسخه البيتا الاولية",
+  "logo": "",
+   "keywords": [
+  "telegram", 
+  "userbot", 
+  "jmthon",
+  "plugable"
+ ],
+ "repository": "https://github.com/JMTHON-AR/PACK",
+  "website": "https://T.ME/JMTHON",
+  "env": {
+   "ENV": {
+    "description": "لا تغيرها ابدا ",
+    "value": "ANYTHING"
+  },
+  "API_ID": {
+    "description": "ضع هنا الايبب ايدي الخاص بك",
+    "value": "",
+    "required": true
+  },
+  "API_HASH": {
+    "description": "ضع هنا الايبي هاش الخاص بك",
+    "value": "",
+    "required": true
+  },
+  "STRING_SESSION": {
+    "description": "ضع هنا كود تيرمكس",
+    "value": "",
+    "required": true
+  },
+  "OWNER_ID": {
+    "description": "ضع هنا ايدي حسابك الشخصي",
+    "value": ""
+  },
+  "OWNER_USERNAME": {
+    "description": "ضع هنا معرفك مع '@' ",
+    "value": ""
+  },
+  "BOT_TOKEN": {
+    "description": "ضع هنا توكن بوتك ",
+    "value": ""
+  },
+  "BOT_USERNAME": {
+    "description": "ضع هنا معرف بوتك مع '@'",
+    "value": ""
+  },
+  "HEROKU_API_KEY": {
+    "description": "ضع هنا ايبي كي هيروكو",
+    "value": ""
+  },
+  "HEROKU_APP_NAME": {
+    "description": "ضع هنا اسم التطبيق الذي وضعته اولا",
+    "value": ""
+  },
+  "PRIVATE_GROUP_ID": {
+    "description": "ضع هنا ايدي مجموعتك الشخصيه يجب ان يبدأ مع  -100",
+    "value": ""
+  },
+  "NAME": {
+    "description": "ضع هنا اسم حسابك على التليغرام",
+    "value": "",
+    "required": false
+  },
+  "TZ": {
+    "description": "هنا ضع المنطقه الزمنيه الخاصه بك",
+    "value": "Asia/baghdad",
+    "required": false
+    }
+  },
+  "addons": [{
+    "plan": "heroku-postgresql",
+    "options": {
+      "version": "12"
+    }
+  }],
+  "buildpacks": [{
+    "url": "heroku/python"
+  },
+  {
+    "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+  }]
+}
+ 
